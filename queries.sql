@@ -6,6 +6,11 @@ select * from "Session" natural join "SessionPaper" natural join "Paper" order b
 
 select * from "DayTime" where weekday = 'Thursday' order by extract(hour from "startTime"), extract(minute from "startTime");
 
+
+select * from "Session"  where "timeId" = 2060 order by "sessionId";
+
+select * from "SessionPaper" natural join "Paper" where "sessionId" = 6110 order by "sessionId", "deliveryOrder";
+
 select * from "Session" natural join "SessionPaper" natural join "Paper" where "timeId" = 2060 order by "sessionId", "deliveryOrder";
 
 
