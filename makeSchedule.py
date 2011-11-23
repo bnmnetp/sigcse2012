@@ -15,8 +15,9 @@ session_q = db.prepare('''select "sessionId","Room", "sessionTitle"::bytea, type
 
 paper_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title"::bytea,"textAbstract"::bytea from "SessionPaper" natural join "Paper" where "sessionId" = $1 order by "sessionId", "deliveryOrder"''')
 
-for day in [day_q(d) for d in ['Wednesday','Thursday','Friday','Saturday']]:
-    print("--------------")
+for dayname in ['Wednesday','Thursday','Friday','Saturday']:
+    day = day_q(dayname)
+    outf.write("-------------- %s --------------\n" %dayname)
     for session in day:
         outf.write("%d:%02d\t%s\t%s\n" % (session[1],session[2],session[3],session[4]))
         slist = session_q(session[0])
