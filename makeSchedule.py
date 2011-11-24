@@ -19,16 +19,27 @@ day_q = db.prepare('''SELECT "timeId",extract(hour from "startTime"),extract(min
                       WHERE weekday = $1
                       order by extract(hour from "startTime"), extract(minute from "startTime")''')
 
-session_q = db.prepare('''select "sessionId","Room", "sessionTitle"::bytea, type, "reviewerId" from "Session"  where "timeId" = $1 order by "sessionId";''')
+session_q = db.prepare('''select "sessionId","Room", "sessionTitle", type, "reviewerId" from "Session"  where "timeId" = $1 order by "sessionId";''')
 
-paper_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title"::bytea,"textAbstract"::bytea from "SessionPaper" natural join "Paper" where "sessionId" = $1 order by "sessionId", "deliveryOrder"''')
+# Papers
+paper_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title","textAbstract" from "SessionPaper" natural join "Paper" where "sessionId" = $1 order by "sessionId", "deliveryOrder"''')
 
 author_q = db.prepare('''select "givenName", surname, institution from "PaperAuthor" natural join "Author" where "proposalId" = $1 ''')
 
 chair_q = db.prepare('''select "givenName", surname, institution from "Reviewer" where "reviewerId" = $1''')
 
+# Panels
 panel_q = db.prepare('''select "proposalId", "textAbstract" from "SessionPanel" natural join "Panel" where "sessionId" = $1 ''')
 panelist_q = db.prepare('''select "givenName", surname,institution from "PanelPanelist" inner join "Panelist" on("contributorId" = "contributorID") where "proposalId" = $1''')
+
+# Special Sessions
+specialsess_q = db.prepare('''select "proposalId", "textAbstract" from "SessionSpecialSession" natural join "SpecialSession" where "sessionId" = $1 ''')
+special_leader_q = db.prepare('''select "givenName", surname, institution from "SpecialSessionLeader" natural join "Leader" where "proposalId" = $1 ''')
+
+# Workshops
+workshop_q = db.prepare('''select "proposalId", "textAbstract"  from "SessionWorkshop" natural join "Workshop" where "sessionId" = $1 ''')
+workshop_presenter_q = db.prepare('''select "givenName", surname, institution from "WorkshopOrganizer" natural join "Organizer" where "proposalId" = $1 ''')
+
 
 class TimeSlot:
     def __init__(self,timeId,startHour,startMinute, endHour,endMinute, event, location, day):
@@ -48,6 +59,10 @@ class TimeSlot:
                 self.sessionList.append(PaperSession(row[0],row[1],row[2],row[3],row[4]))
             elif row[3] == 'Panel':
                 self.sessionList.append(PanelSession(row[0],row[1],row[2],row[3],row[4]))
+            elif row[3] == 'SpecialSession':
+                self.sessionList.append(SpecialSession(row[0],row[1],row[2],row[3],row[4]))
+            elif row[3] == 'Workshop':
+                self.sessionList.append(Workshop(row[0],row[1],row[2],row[3],row[4]))
             else:
                 self.sessionList.append(Session(row[0],row[1],row[2],row[3],row[4]))
 
@@ -68,6 +83,9 @@ class Session:
         self.room = room
         self.title = title
         self.type = sess_type
+        self.chairFirst = ''
+        self.chairLast = ''
+        self.chairInst = ''
         chair = chair_q(chairId)
         if len(chair) > 0:
             self.chairFirst = chair[0][0]
@@ -76,6 +94,7 @@ class Session:
 
     def printMe(self):
         print("%s %s" % (self.type, self.title))
+#        print("Chair: %s %s %s" %(self.chairFirst,self.chairLast,self.chairInst))
         print(self.room)
 
 
@@ -91,7 +110,7 @@ class PaperSession(Session):
     def printMe(self):
         #print("%s %s" % (self.type, self.title))
         super().printMe()
-        print("%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst))
+        print("Chair:  %s %s %s" % (self.chairFirst,self.chairLast,self.chairInst))
         for paper in self.paperList:
             paper.printMe()
 
@@ -108,9 +127,55 @@ class PanelSession(Session):
 
     def printMe(self):
         super().printMe()
+        print("Chair:  %s %s %s" % (self.chairFirst,self.chairLast,self.chairInst))
+        
         print(self.abstract)
         for p in self.panelists:
             print(p)
+
+class SpecialSession(Session):
+    """docstring for SpecialSession"""
+    def __init__(self, sessionid, room, title, sess_type, chairId):
+        super().__init__(sessionid, room, title, sess_type, chairId)
+        specialinfo = specialsess_q(sessionid)
+        self.abstract = specialinfo[0][1]
+        self.proposalId = specialinfo[0][0]
+        self.leaders = []
+        leaders = special_leader_q(self.proposalId)
+        for l in leaders:
+            self.leaders.append("%s %s %s" % (l[0],l[1],l[2]))
+
+    def printMe(self):
+        super().printMe()
+        print(self.abstract)
+        for l in self.leaders:
+            print(l)
+
+class Workshop(Session):
+    """docstring for Worskshop"""
+    def __init__(self, sessionid, room, title, sess_type, chairId):
+        super().__init__(sessionid, room, title, sess_type, chairId)
+        workshopinfo = workshop_q(sessionid)
+        self.abstract = ''
+        
+        if len(workshopinfo) > 0:
+            self.abstract = workshopinfo[0][1]
+            self.proposalId = workshopinfo[0][0]
+        else:
+            print ("*********** ERROR: no info for workshop session %d ", sessionid)
+        
+        presenters = workshop_presenter_q(self.proposalId)
+        self.presenters = []
+        for l in presenters:
+            self.presenters.append("%s %s %s" % (l[0],l[1],l[2]))
+            
+    def printMe(self):
+        """docstring for printMe"""
+        super().printMe()
+        for p in self.presenters:
+            print(p)
+        
+        print(self.abstract)
 
 class Paper:
     def __init__(self,proposalId, title,abstract,order):
