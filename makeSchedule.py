@@ -40,6 +40,9 @@ special_leader_q = db.prepare('''select "givenName", surname, institution from "
 workshop_q = db.prepare('''select "proposalId", "textAbstract"  from "SessionWorkshop" natural join "Workshop" where "sessionId" = $1 ''')
 workshop_presenter_q = db.prepare('''select "givenName", surname, institution from "WorkshopOrganizer" natural join "Organizer" where "proposalId" = $1 ''')
 
+# Birds of a Feather
+bof_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title","textAbstract" from "SessionBof" natural join "BoF" where "sessionId" = $1 ''')
+bof_facilitator_q = db.prepare('''select "givenName", surname, institution from "bofFacilitator" natural join "Facilitator" where "proposalId" = $1 ''')
 
 class TimeSlot:
     def __init__(self,timeId,startHour,startMinute, endHour,endMinute, event, location, day):
@@ -63,6 +66,8 @@ class TimeSlot:
                 self.sessionList.append(SpecialSession(row[0],row[1],row[2],row[3],row[4]))
             elif row[3] == 'Workshop':
                 self.sessionList.append(Workshop(row[0],row[1],row[2],row[3],row[4]))
+            elif row[3] == 'BOF':
+                self.sessionList.append(BoF(row[0],row[1],row[2],row[3],row[4]))
             else:
                 self.sessionList.append(Session(row[0],row[1],row[2],row[3],row[4]))
 
@@ -177,6 +182,34 @@ class Workshop(Session):
         
         print(self.abstract)
 
+class BoF(Session):
+    """docstring for BoF"""
+    def __init__(self, sessionid,room,title,sess_type,chairId):
+        super().__init__(sessionid,room,title,sess_type,chairId)
+        bofinfo = bof_q(sessionid)
+        self.abstract = ''
+        if len(bofinfo) > 0:
+            self.abstract = bofinfo[0][4]
+            self.bofTitle = bofinfo[0][3]            
+            self.proposalId = bofinfo[0][0]
+        else:
+            print ("*********** ERROR: no info for workshop session %d ", sessionid)
+        
+        facilitators = bof_facilitator_q(self.proposalId)
+        self.facilitators = []
+        for l in facilitators:
+            self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
+
+    def printMe(self):
+        """docstring for printMe"""
+        super().printMe()
+        print(self.bofTitle)
+        
+        for p in self.facilitators:
+            print(p)
+
+        print(self.abstract)
+        
 class Paper:
     def __init__(self,proposalId, title,abstract,order):
         self.title = title
