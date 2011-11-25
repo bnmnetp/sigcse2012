@@ -23,3 +23,12 @@ select * from "SpecialSessionLeader" natural join "Leader" where "proposalId" = 
 select * from "SessionWorkshop" natural join "Workshop" order by "sessionId" limit 20;
 
 select "givenName", surname, institution from "WorkshopOrganizer" natural join "Organizer" where "proposalId" = 2 limit 10;
+
+select "proposalId","sessionId","deliveryOrder","title","textAbstract" from "SessionBof" natural join "BoF" where "sessionId" = 6380;
+
+
+select "givenName", surname, institution from "posterPresenter" natural join "Presenter" limit 10;
+
+select * from "PanelPanelist" order by "proposalId" limit 20
+
+select "givenName", surname, institution, "primary" from "PanelPanelist" inner join "Panelist" on("contributorId" = "contributorID") where "proposalId" = 2
