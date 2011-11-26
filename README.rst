@@ -19,3 +19,14 @@ If you need to make changes
 ===========================
 
 I reverse engineered the database for the makeSchedule script.  Things probably won't change too much from year to year, but in case they do here are some notes.
+
+
+
+TODO
+====
+
+* Many of the Session sub classes can be parameterized.  The classes can do their work by simply having the prepared query objects passed to them.
+
+* The schedule should use \colorbox{black}{\color{white} Thursday} to highlight the conference day in the footer. 
+
+* More investigation should be done regarding which fonts to use.  Computer Modern may not be the ultimate font for a conference program.
