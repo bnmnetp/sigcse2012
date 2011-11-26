@@ -5,7 +5,28 @@
 # Date:  November, 2011
 # Description:
 # Generate as Much of the SIGCSE Schedule from the database as possible.
-# License:
+# Copyright (c) 2011 Brad Miller
+#
+# The MIT License
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 
 import postgresql
 from jinja2 import Template
@@ -43,11 +64,11 @@ workshop_presenter_q = db.prepare('''select "givenName", surname, institution fr
 
 # Birds of a Feather
 bof_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title","textAbstract" from "SessionBof" natural join "BoF" where "sessionId" = $1 ''')
-bof_facilitator_q = db.prepare('''select "givenName", surname, institution from "bofFacilitator" natural join "Facilitator" where "proposalId" = $1 ''')
+bof_facilitator_q = db.prepare('''select "givenName", surname, institution, "primary" from "bofFacilitator" natural join "Facilitator" where "proposalId" = $1 ''')
 
 # Posters
 poster_q = db.prepare('''select "proposalId","sessionId","deliveryOrder","title","textAbstract" from "SessionPoster" natural join "Poster" where "sessionId" = $1 ''')
-poster_presenter_q = db.prepare('''select "givenName", surname, institution from "posterPresenter" natural join "Presenter" where "proposalId" = $1 ''')
+poster_presenter_q = db.prepare('''select "givenName", surname, institution, "primary" from "posterPresenter" natural join "Presenter" where "proposalId" = $1 ''')
 
 #
 # Using Jinja2 templates to layout the latex tables.  This is the same
@@ -75,10 +96,27 @@ session_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
 \\end{longtable}    
 ''')
 
+paper_head_t = Template('''\\begin{longtable}{@{}p{1in}@{}p{3in}@{}r}
+   {\\Large\\textbf{ {{type}} }} &
+   {\\Large\\textbf{ {{title}} }} & 
+   {\\Large\\textbf{ {{room}}  }} \\\\
+%row 2
+   Chair:  & 
+   {{chair}} & \\\\ \\\\
+''')
+
+paper_t = Template('''
+{{time}} & 
+\\multicolumn{2}{@{}p{3.75in}}{\\large\\textbf{ {{title}} }} \\\\
+& \\multicolumn{2}{@{}p{3.75in}}{ {{author}} } \\\\ \\\\
+\\multicolumn{3}{@{}p{5in}}{ {{abstract}} } \\\\ \\\\
+''')
 
 def latex_escape(s):
     news = s.replace('&','\\&')
     news = news.replace('#','\\#')
+    news = news.replace('$','\\$')
+    news = news.replace('%','\%')
     pat = re.compile(r'(<a.*?>)|</a>')
     news = pat.sub('',news)
     return news.strip()
@@ -98,7 +136,7 @@ class TimeSlot:
         sl = session_q(timeId)
         for row in sl:
             if row[3] == 'Paper':
-                self.sessionList.append(PaperSession(row[0],row[1],row[2],row[3],row[4]))
+                self.sessionList.append(PaperSession(row[0],row[1],row[2],row[3],row[4],startHour,startMinute))
             elif row[3] == 'Panel':
                 self.sessionList.append(PanelSession(row[0],row[1],row[2],row[3],row[4]))
             elif row[3] == 'SpecialSession':
@@ -164,16 +202,19 @@ class Session:
         c['type'] = self.type
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
-        print(session_t.render(c))
+        res = session_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
 
 class PaperSession(Session):
-    def __init__(self,sessionid,room,title,sess_type,chairId):
+    def __init__(self,sessionid,room,title,sess_type,chairId,startHour,startMinute):
         super().__init__(sessionid,room,title,sess_type,chairId)
         self.paperList = []
 
         pl = paper_q(self.sessionId)
         for paper in pl:
-            self.paperList.append(Paper(paper[0],paper[3], paper[4],paper[2]))
+            self.paperList.append(Paper(paper[0],paper[3], paper[4],paper[2],startHour,startMinute))
 
     def printMe(self):
         #print("%s %s" % (self.type, self.title))
@@ -182,7 +223,23 @@ class PaperSession(Session):
         for paper in self.paperList:
             paper.printMe()
             
-
+    def toLatex(self):
+        """docstring for toLatex"""
+        res = ""
+        c = {}
+        c['title'] = latex_escape(self.title)
+        c['type'] = 'PAPER'
+        c['room'] = self.room
+        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        res = paper_head_t.render(c)
+        for paper in self.paperList:
+            res = res + paper.toLatex()
+            
+        res += '\n\\end{longtable}\n\n'
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
+        
 
 class PanelSession(Session):
     def __init__(self,sessionid,room,title,sess_type,chairId):
@@ -220,9 +277,12 @@ class PanelSession(Session):
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
         c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = ";".join(self.panelists)
+        c['participants'] = "; ".join(self.panelists)
         c['abstract'] = latex_escape(self.abstract)
-        print(ss_panel_t.render(c))
+        res = ss_panel_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
 
 
 class SpecialSession(Session):
@@ -263,9 +323,12 @@ class SpecialSession(Session):
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
         c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = ";".join(self.leaders)
+        c['participants'] = "; ".join(self.leaders)
         c['abstract'] = latex_escape(self.abstract)
-        print(ss_panel_t.render(c))
+        res = ss_panel_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
 
 
         
@@ -295,6 +358,24 @@ class Workshop(Session):
         
         print(self.abstract)
 
+    def toLatex(self):
+        """
+        Take Paper session information and create a tabular
+        environment in latex
+        Needs: type, title, room, chair, participants and abstract
+        """
+        c = {}
+        c['type'] = 'PANEL'
+        c['title'] = latex_escape(self.title)
+        c['room'] = self.room
+        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        c['participants'] = "; ".join(self.presenters)
+        c['abstract'] = latex_escape(self.abstract)
+        res = ss_panel_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
+
 class BoF(Session):
     """docstring for BoF"""
     def __init__(self, sessionid,room,title,sess_type,chairId):
@@ -311,7 +392,12 @@ class BoF(Session):
         facilitators = bof_facilitator_q(self.proposalId)
         self.facilitators = []
         for l in facilitators:
-            self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
+            if l[3] == 'Yes':
+                self.chairFirst = l[0]
+                self.chairLast = l[1]
+                self.chairInst = l[2]
+            else:
+                self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
 
     def printMe(self):
         """docstring for printMe"""
@@ -322,6 +408,24 @@ class BoF(Session):
             print(p)
 
         print(self.abstract)
+
+    def toLatex(self):
+        """
+        Take Paper session information and create a tabular
+        environment in latex
+        Needs: type, title, room, chair, participants and abstract
+        """
+        c = {}
+        c['type'] = 'BOF'
+        c['title'] = latex_escape(self.bofTitle)
+        c['room'] = self.room
+        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        c['participants'] = "; ".join(self.facilitators)
+        c['abstract'] = latex_escape(self.abstract)
+        res = ss_panel_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)
 
 class Poster(Session):
     """docstring for BoF"""
@@ -339,7 +443,12 @@ class Poster(Session):
         facilitators = poster_presenter_q(self.proposalId)
         self.facilitators = []
         for l in facilitators:
-            self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
+            if l[3] == 'Yes':
+                self.chairFirst = l[0]
+                self.chairLast = l[1]
+                self.chairInst = l[2]
+            else:
+                self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
 
     def printMe(self):
         """docstring for printMe"""
@@ -350,15 +459,38 @@ class Poster(Session):
             print(p)
 
         print(self.abstract)
-        
+
+    def toLatex(self):
+        """
+        Take Paper session information and create a tabular
+        environment in latex
+        Needs: type, title, room, chair, participants and abstract
+        """
+        c = {}
+        c['type'] = 'POSTER'
+        c['title'] = latex_escape(self.posterTitle)
+        c['room'] = self.room
+        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        c['participants'] = "; ".join(self.facilitators)
+        c['abstract'] = latex_escape(self.abstract)
+        res = ss_panel_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        print(res)        
+
 class Paper:
-    def __init__(self,proposalId, title,abstract,order):
+    def __init__(self,proposalId, title,abstract,order,startHour,startMinute):
         self.title = title
         self.abstract = abstract
         self.order = order
         self.proposalId = proposalId
         self.authorList = []
-
+        self.startMinute = (order-1)*25+startMinute
+        self.startHour = startHour
+        if self.startMinute >= 60:
+            self.startMinute = self.startMinute % 60
+            self.startHour += 1
+            
         authors = author_q(proposalId)
         for author in authors:
             self.authorList.append("%s %s %s" % author)
@@ -368,6 +500,18 @@ class Paper:
         print(self.abstract)
         for author in self.authorList:
             print(author)
+            
+    def toLatex(self):
+        c = {}
+        c['title'] = latex_escape(self.title)
+        c['abstract'] = latex_escape(self.abstract)
+        c['author'] = "; ".join(self.authorList)
+        c['time'] = '%d:%02d'% (self.startHour, self.startMinute)
+        
+        res = paper_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        return res
 
 ts = []
 #for dayname in ['Wednesday','Thursday','Friday','Saturday']:
