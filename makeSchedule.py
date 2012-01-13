@@ -76,10 +76,10 @@ poster_presenter_q = db.prepare('''select "givenName", surname, institution, "pr
 # template engine used in Sphinx and Django.
 #
 # Needs a dictionary with type, title, room, chair, participants and abstract
-ss_panel_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
-    {\Large\\textbf{ {{type}} }} & 
-    {\Large\\textbf{ {{title}} }} & 
-    {\Large\\textbf{ {{room}} }} \\\\
+ss_panel_t = Template('''\\begin{longtable}[l]{@{}l@{}l@{}r}
+    \\parbox[t]{1in}{\\sffamily\\large\\textbf{ {{type}} }} & 
+    \\parbox[t]{3in}{\\sffamily\\raggedright\\large\\textbf{ {{title}} }} & 
+    \\parbox[t]{1in}{\\sffamily\\raggedleft\\large\\textbf{ {{room}} }} \\\\
 % row 2    
     Chair: & 
     {{chair}}  \\\\[0.5em]
@@ -87,47 +87,46 @@ ss_panel_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
     Participants: & 
     \multicolumn{2}{@{}l}{\parbox{3.75in}{ {{participants}}  }} \\\\[2em]
 % row 4
-    \multicolumn{3}{@{}p{5in}}{ {{abstract}} }
+    \multicolumn{3}{@{}p{5in}}{\small {{abstract}} }
 \end{longtable}''')
 
-ss_work_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
-    {\Large\\textbf{ {{orderNum}} }} & 
-    {\Large\\textbf{ {{title}} }} & 
-    {\Large\\textbf{ {{room}} }} \\\\
+ss_work_t = Template('''\\begin{longtable}[l]{@{}l@{}l@{}r}
+    \parbox[t]{0.25in}{\\sffamily\\large\\textbf{ {{orderNum}}. }} & 
+    \parbox[t]{3.75in}{\\raggedright\\sffamily\\large\\textbf{ {{title}} }} & 
+    {\\sffamily\\large\\textbf{ {{room}} }} \\\\[1.5em]
 % row 3
-    Participants: & 
-    \multicolumn{2}{@{}l}{\parbox{3.75in}{ {{participants}}  }} \\\\[2em]
+    \multicolumn{3}{@{}l}{\parbox{5in}{ {{participants}}  }} \\\\[1.5em]
 % row 4
-    \multicolumn{3}{@{}p{5in}}{ {{abstract}} }
+    \multicolumn{3}{@{}p{5in}}{\small {{abstract}} }
 \end{longtable}''')
 
 session_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
-    {\Large\\textbf{ {{type}} }} & 
-    {\Large\\textbf{ {{title}} }} & 
-    {\Large\\textbf{ {{room}} }} \\\\
+    {\\sffamily\large\\textbf{ {{type}} }} & 
+    {\\sffamily\large\\textbf{ {{title}} }} & 
+    {\\sffamily\large\\textbf{ {{room}} }} \\\\
 \\end{longtable}    
 ''')
 
 paper_head_t = Template('''\\newpage
-\\begin{longtable}{@{}p{1in}@{}p{3in}@{}r}
-   {\\Large\\textbf{ {{type}} }} &
-   {\\Large\\textbf{ {{title}} }} & 
-   {\\Large\\textbf{ {{room}}  }} \\\\
+\\begin{longtable}{@{}p{0.75in}@{}p{3.25in}@{}r}
+   {\\sffamily\\large\\textbf{ {{type}} }} &
+   {\\raggedright\\sffamily\\large\\textbf{ {{title}} }} & 
+   {\\sffamily\\large\\textbf{ {{room}}  }} \\\\
 %row 2
    Chair:  & 
-   {{chair}} & \\\\ \\\\
+   {\\raggedright {{chair}} } & \\\\ \\\\
 ''')
 
 paper_t = Template('''
-{{time}} & 
-\\multicolumn{2}{@{}p{3.75in}}{\\large\\textbf{ {{title}} }} \\\\
-& \\multicolumn{2}{@{}p{3.75in}}{ {{author}} } \\\\ \\\\
-\\multicolumn{3}{@{}p{5in}}{ {{abstract}} } \\\\ \\\\
+{\\sffamily \\large {{time}} }& 
+\\multicolumn{2}{@{}p{3.75in}}{\\sffamily\\raggedright\\textbf{ {{title}} }} \\\\
+& \\multicolumn{2}{@{}p{3.75in}}{\\raggedright {{author}} } \\\\ \\\\
+\\multicolumn{3}{@{}p{5in}}{\small {{abstract}} } \\\\ \\\\
 ''')
 
 def latex_escape(s):
     news = s.replace('&','\\&')
-    news = s.replace('_','\\_')    
+    news = news.replace('_','\\_')    
     news = news.replace('#','\\#')
     news = news.replace('$','\\$')
     news = news.replace('%','\%')
@@ -189,7 +188,7 @@ class TimeSlot:
 
         for session in self.sessionList:
             session.toLatex()
-            print('''\\vspace{0.5em}
+        print('''\\vspace{0.5em}
 \\noindent\\rule{5in}{0.02cm}
 \\vspace{0.5em}''')
                     
@@ -265,7 +264,7 @@ class PaperSession(Session):
         c['title'] = latex_escape(self.title)
         c['type'] = 'PAPER'
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
         res = paper_head_t.render(c)
         for paper in self.paperList:
             res = res + paper.toLatex()
@@ -290,7 +289,21 @@ class PanelSession(Session):
                 self.chairLast = row[1]
                 self.chairInst = row[2]
             else:
-                self.panelists.append("%s %s %s" % (row[0],row[1],row[2]))
+#                self.panelists.append("%s %s %s" % (row[0],row[1],row[2]))
+                self.panelists.append((row[0],row[1],row[2]))
+
+        self.instDict = OrderedDict()
+        for author in self.panelists:
+            if author[2] not in self.instDict:
+                self.instDict[author[2]] = []
+            self.instDict[author[2]].append("%s %s" % author[:2])
+#            self.authorList.append("%s %s %s" % author)
+        self.panelists = []
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", " + "\\textit{"+i+"}"
+            self.panelists.append(a)
+
 
     def printMe(self):
         super().printMe()
@@ -311,8 +324,8 @@ class PanelSession(Session):
         c['type'] = 'PANEL'
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = "; ".join(self.panelists)
+        c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
+        c['participants'] =  latex_escape("; ".join(self.panelists))
         c['abstract'] = latex_escape(self.abstract)
         res = ss_panel_t.render(c)
         res = res.replace('{ ','{')
@@ -335,7 +348,20 @@ class SpecialSession(Session):
                 self.chairLast = l[1]
                 self.chairInst = l[2]
             else:    
-                self.leaders.append("%s %s %s" % (l[0],l[1],l[2]))
+#                self.leaders.append("%s %s %s" % (l[0],l[1],l[2]))
+                self.leaders.append((l[0],l[1],l[2]))
+                        
+        self.instDict = OrderedDict()
+        for author in self.leaders:
+            if author[2] not in self.instDict:
+                self.instDict[author[2]] = []
+            self.instDict[author[2]].append("%s %s" % author[:2])
+#            self.authorList.append("%s %s %s" % author)
+        self.leaders = []
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", " + "\\textit{"+i+"}"
+            self.leaders.append(a)
 
     def printMe(self):
         super().printMe()
@@ -357,8 +383,8 @@ class SpecialSession(Session):
         c['type'] = 'PANEL'
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = "; ".join(self.leaders)
+        c['chair'] = latex_escape("%s %s, \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
+        c['participants'] = latex_escape("; ".join(self.leaders))
         c['abstract'] = latex_escape(self.abstract)
         res = ss_panel_t.render(c)
         res = res.replace('{ ','{')
@@ -392,7 +418,19 @@ class Workshop(Session):
         presenters = workshop_presenter_q(self.proposalId)
         self.presenters = []
         for l in presenters:
-            self.presenters.append("%s %s %s" % (l[0],l[1],l[2]))
+            self.presenters.append((l[0],l[1],l[2]))
+
+        self.instDict = OrderedDict()
+        for author in self.presenters:
+            if author[2] not in self.instDict:
+                self.instDict[author[2]] = []
+            self.instDict[author[2]].append("%s %s" % author[:2])
+
+        self.presenters = []
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", " + "\\textit{"+i+"}"
+            self.presenters.append(a)
             
     def printMe(self):
         """docstring for printMe"""
@@ -413,7 +451,7 @@ class Workshop(Session):
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
         c['orderNum'] = self.deliveryOrder
-        c['participants'] = "; ".join(self.presenters)
+        c['participants'] = latex_escape("; ".join(self.presenters))
         c['abstract'] = latex_escape(self.abstract)
         res = ss_work_t.render(c)
         res = res.replace('{ ','{')
@@ -463,8 +501,8 @@ class BoF(Session):
         c['type'] = 'BOF'
         c['title'] = latex_escape(self.bofTitle)
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = "; ".join(self.facilitators)
+        c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
+        c['participants'] = latex_escape("; ".join(self.facilitators))
         c['abstract'] = latex_escape(self.abstract)
         res = ss_panel_t.render(c)
         res = res.replace('{ ','{')
@@ -514,8 +552,8 @@ class Poster(Session):
         c['type'] = 'POSTER'
         c['title'] = latex_escape(self.posterTitle)
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
-        c['participants'] = "; ".join(self.facilitators)
+        c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
+        c['participants'] = latex_escape("; ".join(self.facilitators))
         c['abstract'] = latex_escape(self.abstract)
         res = ss_panel_t.render(c)
         res = res.replace('{ ','{')
@@ -584,7 +622,11 @@ for dayname in ['Wednesday','Thursday','Friday','Saturday']:
     for row in day:
         ts.append(TimeSlot(row[0],row[1],row[2],row[3],row[4],row[5],row[6],dayname))
 
+day = ''
 for t in ts:
+    if t.day != day:
+        print("\cfoot{Wednesday \colorbox{red}{Thursday} Friday Saturday}")
+        day = t.day
     t.toLatex()
     #t.printSummary()
 
