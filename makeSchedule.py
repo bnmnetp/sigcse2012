@@ -31,9 +31,10 @@
 import postgresql
 from jinja2 import Template
 import re
+from collections import OrderedDict
 
 #outf = codecs.open('schedule.txt','w','utf-8')
-db = postgresql.open("pq://bmiller:grouplens@localhost/sigcse12")
+db = postgresql.open("pq://bmiller:grouplens@localhost/sigcse2012")
 
 
 day_q = db.prepare('''SELECT "timeId",extract(hour from "startTime"),extract(minute from "startTime"), extract(hour from "endTime"), extract(minute from "endTime"), event, location
@@ -59,7 +60,7 @@ specialsess_q = db.prepare('''select "proposalId", "textAbstract" from "SessionS
 special_leader_q = db.prepare('''select "givenName", surname, institution, "primary" from "SpecialSessionLeader" natural join "Leader" where "proposalId" = $1 ''')
 
 # Workshops
-workshop_q = db.prepare('''select "proposalId", "textAbstract"  from "SessionWorkshop" natural join "Workshop" where "sessionId" = $1 ''')
+workshop_q = db.prepare('''select "proposalId", "textAbstract", "deliveryOrder", "title"  from "SessionWorkshop" natural join "Workshop" where "sessionId" = $1 ''')
 workshop_presenter_q = db.prepare('''select "givenName", surname, institution from "WorkshopOrganizer" natural join "Organizer" where "proposalId" = $1 ''')
 
 # Birds of a Feather
@@ -89,6 +90,17 @@ ss_panel_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
     \multicolumn{3}{@{}p{5in}}{ {{abstract}} }
 \end{longtable}''')
 
+ss_work_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
+    {\Large\\textbf{ {{orderNum}} }} & 
+    {\Large\\textbf{ {{title}} }} & 
+    {\Large\\textbf{ {{room}} }} \\\\
+% row 3
+    Participants: & 
+    \multicolumn{2}{@{}l}{\parbox{3.75in}{ {{participants}}  }} \\\\[2em]
+% row 4
+    \multicolumn{3}{@{}p{5in}}{ {{abstract}} }
+\end{longtable}''')
+
 session_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
     {\Large\\textbf{ {{type}} }} & 
     {\Large\\textbf{ {{title}} }} & 
@@ -96,7 +108,8 @@ session_t = Template('''\\begin{longtable}[l]{@{}p{1in}@{}p{3in}@{}r}
 \\end{longtable}    
 ''')
 
-paper_head_t = Template('''\\begin{longtable}{@{}p{1in}@{}p{3in}@{}r}
+paper_head_t = Template('''\\newpage
+\\begin{longtable}{@{}p{1in}@{}p{3in}@{}r}
    {\\Large\\textbf{ {{type}} }} &
    {\\Large\\textbf{ {{title}} }} & 
    {\\Large\\textbf{ {{room}}  }} \\\\
@@ -114,6 +127,7 @@ paper_t = Template('''
 
 def latex_escape(s):
     news = s.replace('&','\\&')
+    news = s.replace('_','\\_')    
     news = news.replace('#','\\#')
     news = news.replace('$','\\$')
     news = news.replace('%','\%')
@@ -158,6 +172,15 @@ class TimeSlot:
         for session in self.sessionList:
             print()
             session.printMe()
+
+    def printSummary(self):
+        print('-----------------')
+        print('%s, %d:%02d to %d:%02d' % (self.day,self.startHour,self.startMinute,self.endHour,self.endMinute))
+        print('-----------------')
+
+        for session in self.sessionList:
+            print()
+            session.printSummary()
             
     def toLatex(self):
         """docstring for toLatex"""
@@ -177,7 +200,7 @@ class Session:
     def __init__(self,sessionid,room,title,sess_type,chairId):
         self.sessionId = sessionid
         self.room = room
-        self.title = title
+        self.title = re.sub('<.*?>','',title) # remove yucky html tags
         self.type = sess_type
         self.chairFirst = ''
         self.chairLast = ''
@@ -191,6 +214,11 @@ class Session:
     def printMe(self):
         print("%s %s" % (self.type, self.title))
 #        print("Chair: %s %s %s" %(self.chairFirst,self.chairLast,self.chairInst))
+        print(self.room)
+
+    def printSummary(self):
+        print("%s %s" % (self.type, self.title))
+        print("Chair: %s %s %s" %(self.chairFirst,self.chairLast,self.chairInst))
         print(self.room)
 
     def toLatex(self):
@@ -222,6 +250,13 @@ class PaperSession(Session):
         print("Chair:  %s %s %s" % (self.chairFirst,self.chairLast,self.chairInst))
         for paper in self.paperList:
             paper.printMe()
+
+    def printSummary(self):
+        print("%s %s" % (self.type, self.title))
+        print("Chair: %s %s %s" %(self.chairFirst,self.chairLast,self.chairInst))
+        print(self.room)
+        for paper in self.paperList:
+            print(paper.title)
             
     def toLatex(self):
         """docstring for toLatex"""
@@ -342,9 +377,18 @@ class Workshop(Session):
         if len(workshopinfo) > 0:
             self.abstract = workshopinfo[0][1]
             self.proposalId = workshopinfo[0][0]
+            self.deliveryOrder = workshopinfo[0][2]
+            self.title = workshopinfo[0][3]
         else:
             print ("*********** ERROR: no info for workshop session %d ", sessionid)
-        
+        self.title = re.sub('<.*?>','',self.title) # remove yucky html tags
+        num, ttl = self.title.split(':',1)
+        try:
+            rest,number = num.split()
+        except:
+            print("DEBUG:",num)
+        self.deliveryOrder = number
+        self.title = ttl.strip()
         presenters = workshop_presenter_q(self.proposalId)
         self.presenters = []
         for l in presenters:
@@ -365,13 +409,13 @@ class Workshop(Session):
         Needs: type, title, room, chair, participants and abstract
         """
         c = {}
-        c['type'] = 'PANEL'
+        c['type'] = 'Workshop'
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
-        c['chair'] = "%s %s %s" % (self.chairFirst,self.chairLast,self.chairInst)
+        c['orderNum'] = self.deliveryOrder
         c['participants'] = "; ".join(self.presenters)
         c['abstract'] = latex_escape(self.abstract)
-        res = ss_panel_t.render(c)
+        res = ss_work_t.render(c)
         res = res.replace('{ ','{')
         res = res.replace(' }','}')        
         print(res)
@@ -492,8 +536,17 @@ class Paper:
             self.startHour += 1
             
         authors = author_q(proposalId)
+        self.instDict = OrderedDict()
         for author in authors:
-            self.authorList.append("%s %s %s" % author)
+            if author[2] not in self.instDict:
+                self.instDict[author[2]] = []
+            self.instDict[author[2]].append("%s %s" % author[:2])
+#            self.authorList.append("%s %s %s" % author)
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", " + i
+
+            self.authorList.append(a)
 
     def printMe(self):
         print(self.title)
@@ -502,10 +555,17 @@ class Paper:
             print(author)
             
     def toLatex(self):
+        self.authorList = []
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", \\textit{" + i + "}"
+            
+            self.authorList.append(a)
+
         c = {}
         c['title'] = latex_escape(self.title)
         c['abstract'] = latex_escape(self.abstract)
-        c['author'] = "; ".join(self.authorList)
+        c['author'] = latex_escape("; ".join(self.authorList))
         c['time'] = '%d:%02d'% (self.startHour, self.startMinute)
         
         res = paper_t.render(c)
@@ -513,15 +573,20 @@ class Paper:
         res = res.replace(' }','}')        
         return res
 
+def rreplace(s, old, new, occ):
+    li = s.rsplit(old,occ)
+    return new.join(li)
+
 ts = []
-#for dayname in ['Wednesday','Thursday','Friday','Saturday']:
-for dayname in ['Thursday']:    
+for dayname in ['Wednesday','Thursday','Friday','Saturday']:
+#for dayname in ['Thursday']:    
     day = day_q(dayname)
     for row in day:
         ts.append(TimeSlot(row[0],row[1],row[2],row[3],row[4],row[5],row[6],dayname))
 
 for t in ts:
     t.toLatex()
+    #t.printSummary()
 
 #for dayname in ['Wednesday','Thursday','Friday','Saturday']:
 #    day = day_q(dayname)
