@@ -124,6 +124,11 @@ paper_t = Template('''
 \\multicolumn{3}{@{}p{5in}}{\small {{abstract}} } \\\\ \\\\
 ''')
 
+poster_t = Template('''
+\\multicolumn{3}{@{}p{5in}}{\\sffamily\\raggedright\\textbf{ {{title}} }} \\\\
+\\multicolumn{3}{@{}p{5in}}{\\raggedright {{author}} } \\\\ \\\\
+''')
+
 def latex_escape(s):
     news = s.replace('&','\\&')
     news = news.replace('_','\\_')    
@@ -159,7 +164,7 @@ class TimeSlot:
             elif row[3] == 'BOF':
                 self.sessionList.append(BoF(row[0],row[1],row[2],row[3],row[4]))
             elif row[3] == 'Poster':
-                self.sessionList.append(Poster(row[0],row[1],row[2],row[3],row[4]))
+                self.sessionList.append(PosterSession(row[0],row[1],row[2],row[3],row[4]))
             else:
                 self.sessionList.append(Session(row[0],row[1],row[2],row[3],row[4]))
 
@@ -509,28 +514,16 @@ class BoF(Session):
         res = res.replace(' }','}')        
         print(res)
 
-class Poster(Session):
+class PosterSession(Session):
     """docstring for BoF"""
     def __init__(self, sessionid,room,title,sess_type,chairId):
         super().__init__(sessionid,room,title,sess_type,chairId)
-        posterinfo = poster_q(sessionid)
-        self.abstract = ''
-        if len(posterinfo) > 0:
-            self.abstract = posterinfo[0][4]
-            self.posterTitle = posterinfo[0][3]            
-            self.proposalId = posterinfo[0][0]
-        else:
-            print ("*********** ERROR: no info for Poster session %d ", sessionid)
-        
-        facilitators = poster_presenter_q(self.proposalId)
-        self.facilitators = []
-        for l in facilitators:
-            if l[3] == 'Yes':
-                self.chairFirst = l[0]
-                self.chairLast = l[1]
-                self.chairInst = l[2]
-            else:
-                self.facilitators.append("%s %s %s" % (l[0],l[1],l[2]))
+        posters = poster_q(sessionid)
+
+        self.posterList = []
+        for p in posters:
+            self.posterList.append(Poster(p[0],p[3],p[4],p[2]))        
+
 
     def printMe(self):
         """docstring for printMe"""
@@ -550,15 +543,59 @@ class Poster(Session):
         """
         c = {}
         c['type'] = 'POSTER'
-        c['title'] = latex_escape(self.posterTitle)
+        c['title'] = latex_escape(self.title)
         c['room'] = self.room
         c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
-        c['participants'] = latex_escape("; ".join(self.facilitators))
-        c['abstract'] = latex_escape(self.abstract)
+#        c['participants'] = latex_escape("; ".join(self.facilitators))
+#        c['abstract'] = latex_escape(self.abstract)
         res = ss_panel_t.render(c)
+
+        res = paper_head_t.render(c)
+        for poster in self.posterList:
+            res = res + poster.toLatex()
+            
+        res += '\n\\end{longtable}\n\n'
+
         res = res.replace('{ ','{')
         res = res.replace(' }','}')        
         print(res)        
+
+class Poster:
+    def __init__(self,proposalId, title, abstract,order):
+        self.title = title
+        self.abstract = abstract
+        self.order = order
+        self.authorList = []
+
+        authors = poster_presenter_q(proposalId);
+        self.instDict = OrderedDict()
+        for author in authors:
+            if author[2] not in self.instDict:
+                self.instDict[author[2]] = []
+            self.instDict[author[2]].append("%s %s" % author[:2])
+#            self.authorList.append("%s %s %s" % author)
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", " + i
+
+            self.authorList.append(a)
+
+    def toLatex(self):
+        self.authorList = []
+        for i in self.instDict:
+            a = ", ".join(self.instDict[i])
+            a = rreplace(a,","," and",1) + ", \\textit{" + i + "}"
+            
+            self.authorList.append(a)
+
+        c = {}
+        c['title'] = latex_escape(self.title)
+        c['author'] = latex_escape("; ".join(self.authorList))
+        
+        res = poster_t.render(c)
+        res = res.replace('{ ','{')
+        res = res.replace(' }','}')        
+        return res
 
 class Paper:
     def __init__(self,proposalId, title,abstract,order,startHour,startMinute):
