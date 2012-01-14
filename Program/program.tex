@@ -4,7 +4,7 @@
 %  Created by Bradley Miller on 2011-11-24.
 %  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 %
-\documentclass[]{article}
+\documentclass[twoside]{article}
 
 
 % for use with pdflatex
@@ -17,7 +17,7 @@
 \usepackage{xunicode}
 \usepackage{xltxtra}
 
-
+\usepackage{color}
 \setsansfont[Mapping=tex-text]{Arial}
 \setmonofont{Monaco}
 
@@ -29,7 +29,7 @@
 %
 % Running Headers and footers
 %\usepackage{fancyhdr}
-
+\usepackage{multirow}
 % Surround parts of graphics with box
 \usepackage{boxedminipage}
 
@@ -53,21 +53,48 @@
 \else
 \usepackage{graphicx}
 \fi
-\title{A LaTeX Article}
+\title{The $43^{rd}$ Technical Symposium on Computer Science Education}
 \author{  }
 
-\date{2011-11-24}
+\date{2012-2-29}
+
+\makeatletter
+     \renewcommand*\l@section{\@dottedtocline{1}{0em}{1.8em}}
+     \renewcommand*\l@subsection{\@dottedtocline{2}{1.5em}{2.0em}}
+     \renewcommand*\l@subsubsection{\@dottedtocline{3}{4.3em}{3.0em}}
+\makeatother
 
 \begin{document}
-
+\definecolor{MyGray}{gray}{0.5}
 \ifpdf
 \DeclareGraphicsExtensions{.pdf, .jpg, .tif}
 \else
 \DeclareGraphicsExtensions{.eps, .jpg}
 \fi
 
-\input{fm01spc-sc-message.tex}
+\begin{center}
+\includegraphics[scale=0.5]{sigcseLogoProcessColors.pdf}
 
+\vspace{0.25in}
+
+{\LARGE\sffamily The 43\textsuperscript{rd} Technical Symposium on Computer Science Education}
+\end{center}
+
+%\maketitle
+
+\tableofcontents
+
+\fancyhead{}
+\input{fm01spc-sc-message.tex}
+\input{stats.tex}
+\input{awards.tex}
+\input{evals.tex}
+\input{committee.tex}
+\input{notes.tex}
+\addcontentsline{toc}{section}{Schedule}
 \input{generated_schedule.tex}
+
+\input{pre_events.tex}
+\input{upcoming.tex}
  
 \end{document}
