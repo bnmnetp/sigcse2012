@@ -167,6 +167,8 @@ class TimeSlot:
                 self.sessionList.append(PosterSession(row[0],row[1],row[2],row[3],row[4]))
             else:
                 self.sessionList.append(Session(row[0],row[1],row[2],row[3],row[4]))
+    def getInterval(self):
+        return "%02d:%02d - %02d:%02d" % (self.startHour,self.startMinute,self.endHour,self.endMinute)
 
     def printMe(self):
         print('-----------------')
@@ -189,7 +191,7 @@ class TimeSlot:
     def toLatex(self):
         """docstring for toLatex"""
         print('\\noindent')
-        print('\\framebox[5in][l]{{\\Large \\textbf{%s,  %d:%02d to %d:%02d}}}' %  (self.day,self.startHour,self.startMinute,self.endHour,self.endMinute))
+        print('\\framebox[5in][c]{{\\Large\\sffamily\\textbf{%s,  %d:%02d to %d:%02d}}}' %  (self.day,self.startHour,self.startMinute,self.endHour,self.endMinute))
 
         for session in self.sessionList:
             session.toLatex()
@@ -267,7 +269,7 @@ class PaperSession(Session):
         res = ""
         c = {}
         c['title'] = latex_escape(self.title)
-        c['type'] = 'PAPER'
+        c['type'] = 'PAPERS'
         c['room'] = self.room
         c['chair'] = latex_escape("%s %s \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
         res = paper_head_t.render(c)
@@ -660,10 +662,17 @@ for dayname in ['Wednesday','Thursday','Friday','Saturday']:
         ts.append(TimeSlot(row[0],row[1],row[2],row[3],row[4],row[5],row[6],dayname))
 
 day = ''
+print("\\fancyfoot[LE,RO]{\\thepage}")
+#print("\\definecolor{MyGray}{gray}{0.75}")
 for t in ts:
     if t.day != day:
-        print("\cfoot{Wednesday \colorbox{red}{Thursday} Friday Saturday}")
+        #print("\cfoot{Wednesday \colorbox{red}{Thursday} Friday Saturday}")
+        print("\\addcontentsline{toc}{subsection}{%s}" % t.day)
         day = t.day
+#    print("\\fancyfoot[LE,RO]{%s}"%t.getInterval())
+#    print("\\fancyfoot[LO,RE]{%s}"%t.day)
+#    print("\\cfoot{\\colorbox{black}{\color{white}\\textsf{%s %s}}}" % (t.day,t.getInterval()))
+    print("\\cfoot{\\colorbox[gray]{0.45}{\\color{white}\\textsf{%s %s}}}" % (t.day,t.getInterval()))
     t.toLatex()
     #t.printSummary()
 
