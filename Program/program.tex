@@ -17,6 +17,10 @@
 \usepackage{xunicode}
 \usepackage{xltxtra}
 
+
+\setsansfont[Mapping=tex-text]{Arial}
+\setmonofont{Monaco}
+
 % Setup for fullpage use
 %\usepackage{fullpage}
 \usepackage[text={5in,8in},centering,showframe]{geometry}
@@ -32,6 +36,9 @@
 
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 
 %\newif\ifpdf
 %\ifx\pdfoutput\undefined
