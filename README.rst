@@ -25,10 +25,12 @@ I reverse engineered the database for the makeSchedule script.  Things probably 
 You can think of the conference as a collection of time slots.  Each time slot can have several sessions.  Some sessions are really generic, like snack time, or plenary sessions.  Others have lots of information you need to get at.  Here's a list of the session types I've implemented:
 
 * Panel
+
   * SessionPanel --> Panel --> PanelPanelist --> Panelist
   * The PanelPanelist table has a primary column.  If yes this tells you the organizer of this particular panel
 
 * SpecialSession
+
   * SessionSpecialSession --> SpecialSession --> SpecialSessionLeader --> Leader
   * SpecialSessionLeader has a primary column which again tells you the organizer of this special session.
   
@@ -44,6 +46,7 @@ You can think of the conference as a collection of time slots.  Each time slot c
   * SessionPoster --> Poster --> PosterPresenter --> Presenter
   
 * Workshop
+
   * SessionWorkshop --> Workshop --> WorkshopOrganizer --> Organizer
 
   
