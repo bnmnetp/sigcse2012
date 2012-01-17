@@ -32,17 +32,21 @@ You can think of the conference as a collection of time slots.  Each time slot c
 * SpecialSession
 
   * SessionSpecialSession --> SpecialSession --> SpecialSessionLeader --> Leader
+  
   * SpecialSessionLeader has a primary column which again tells you the organizer of this special session.
   
 * Paper
+
   * This one's a bit different than the others.  Each Paper session has a list of Papers that are presented, including the order of presentation.  The paper session has a chair/moderator.
   * SessionPaper --> Paper
   * PaperAuthor --> Author
   
 * BoF
+
   * SessionBof --> Bof --> BofFacilitator --> Facilitator
   
 * Poster
+
   * SessionPoster --> Poster --> PosterPresenter --> Presenter
   
 * Workshop
