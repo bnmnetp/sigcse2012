@@ -1,0 +1,441 @@
+Workshop 1
+work01u Using Social Networking to Improve Student Learning Through Classroom Salon
+John Barr, Ithaca College; Ananda Gunawardena, Carnegie Mellon University
+
+Workshop 2
+work02c Challenges and Opportunities in Conducting Educational Research in the Computer Science Classroom
+Aman Yadav and Tim Korb, Purdue University
+
+Workshop 3
+work03c C++11 in Parallel
+Joe Hummel, U. of California, Irvine
+
+Workshop 4
+work04a The Absolute Beginner’s Guide to JUnit in the Classroom
+Stephen Edwards and Manuel Perez-Quinones, Virginia Tech, Department of Computer Science
+
+Workshop 5
+work05s Student Scrums
+Thomas Reichlmayr, Rochester Instittue of Technology
+
+Workshop 6
+work06r Reviewing NSF Proposals: Learn about Effective Proposal Writing via the Review Process
+Sue Fitzgerald and Guy-Alain Amoussou, National Science Foundation
+
+Workshop 7
+work07h A Hands-On Comparison of iOS vs. Android
+Michael Rogers, Northwest Missouri State University; Mark Goadrich, Centenary College of Louisiana
+
+Workshop 8
+work08k Killing 3 Birds with One Course: Service Learning, Professional Writing, and Project Management
+Joseph Mertz, Carnegie Mellon University; Scott McElfresh, Wake Forest University; Steven Andrianoff and Jennifer Dempsey, St. Bonaventure University
+
+Workshop 9
+work09c Computer Science Unplugged, Robotics, and Outreach Activities
+Tim Bell, University of Canterbury; Daniela Marghitu, Auburn University; Lynn Lambert, Christopher Newport University
+
+Workshop 10
+work10i Introduction to Using FPGAs in the Computer Science Curriculum
+William Jones and Brian Larkins, Coastal Carolina University
+
+Workshop 11
+work11h Helping Students Become Better Communicators
+Janet Burge and Gerald Gannod, Miami University; Paul Anderson, Miami Univerity
+
+Workshop 12
+work12r ROS for Educators: Teaching with the Robot Operating System and Microsoft Kinect
+Michael Ferguson, Willow Garage, Inc.; Julian Mason, Duke University; Sharon Gower Small, Siena College; Zachary Dodds, Harvey Mudd College
+
+Workshop 13
+work13b Board Game Project Ideas for CS 1 and CS 2
+Zachary Kurmas, Grand Valley State University; James Vanderhyde, Benedictine College
+
+Workshop 14
+work14t A Taste of Linked Data and the Semantic Web
+Marsha Zaidman and David Hyland-Wood, University of Mary Washington
+
+Workshop 15
+work15g Teaching with Greenfoot and the Kinect – A Novel Way to Engage Beginners
+Michael Kölling and Neil Brown, University of Kent
+
+
+
+BoF
+bof05 CS Unplugged, Outreach and CS Kinesthetic Activities
+Chair: Lynn Lambert Christopher Newport University
+
+BoF
+bof29 Infusing Software Assurance and Secure Coding into Introductory CS courses
+Chair: Elizabeth Hawthorne Hawthorne Union County College
+
+BoF
+bof40 Web-CAT User Group
+Chair: Stephen Edwards Virginia Tech, Department of Computer Science
+
+BoF
+bof04 Teaching Open Source
+Chair: Sebastian Dziallas Franklin W. Olin College of Engineering
+
+BoF
+bof41 AP CS Principles and the 'Beauty and Joy of Computing' Curriculum
+Chair: Brian Harvey University of California, Berkeley
+
+BoF
+bof45 Teaching Track Faculty in CS
+Chair: Daniel D. Garcia UC Berkeley
+
+BoF
+bof19 A Town Meeting:  SIGCSE Committee on Expanding the Women-in-Computing Community
+Chair: Gloria Townsend DePauw Universtiy
+
+BoF
+bof46 Sharing Incremental Approaches for Adding Parallelism to CS Curricula
+Chair: Richard Brown St. Olaf College
+
+BoF
+bof15 Computer Science: Small Department Initiative
+Chair: James Jerkofsky Walsh University
+
+BoF
+bof25 Teaching with Alice
+Chair: Donald Slater Carnegie Mellon University
+
+BoF
+bof34 Identifying Effective Pedagogical Practices for Commenting Computer Source Code
+Chair: Peter DePasquale The College of New Jersey
+
+BoF
+bof16 Design of a Computer Security Teaching and Research Laboratory
+Chair: jeffrey duffany universidad del turabo
+
+BoF
+bof33 Student ICTD Research and Service Learning Abroad
+Chair: Joseph Mertz Carnegie Mellon University
+
+BoF
+bof28 Imaging College Educators
+Chair: Jerod Weinman Grinnell College
+
+BoF
+bof09 Let's Talk Social Media
+Chair: Kimberly Voll University of British Columbia
+
+BoF
+bof13 Program by Design: TeachScheme/ReachJava
+Chair: Viera Proulx Northeastern University
+
+BoF
+bof07 CSTA Chapters: Supporting your local computer science educators
+Chair: Frances P. Trees Rutgers, The State University of New Jersey
+
+BoF
+bof35 Revitalizing Computing Camp and Outreach:  How Do We Engage Teenagers in “Cool” Technology?
+Chair: Kristine Nagel Georgia Gwinnett College
+
+BoF
+bof22 Active eTextbooks for CS: What Should They Be?
+Chair: Cliff Shaffer Virginia Tech
+
+BoF
+bof43 Enriching Computing Instruction with Studio-Based Learning
+Chair: N. Hari Narayanan Auburn University
+
+BoF
+bof03 AP CS A - Sharing teaching strategies and curricular ideas
+Chair: Lester Wainwright Charlottesville High School
+
+BoF
+bof06 Regional Celebrations of Women in Computing (WiC) - Best Practices
+Chair: Jodi Tims Baldwin-Wallace College
+
+BoF
+bof23 Hacking and the Security Curriculum
+Chair: Richard Weiss The Evergreen State College
+
+BoF
+bof17 Flipping the Classroom
+Chair: Barry Brown Sierra College
+
+BoF
+bof26 Using Social Networks to Engage Computer Science Students
+Chair: Semmy Purewal University of North Carolina at Asheville
+
+BoF
+bof12 Digital Humanities: Reaching Out to the Other Culture
+Chair: Robert Beck Villanova University
+
+BoF
+bof18 A Multimedia and Liberal Arts Approach to a First Course in Programming and its Crossover Potential for Computer Science and the Arts
+Chair: Trish Cornez University of Redlands
+
+BoF
+bof30 Teaching with App Inventor for Android
+Chair: Jeff Gray University of Alabama
+
+BoF
+bof47 Technology that Educators of Computing Hail (TECH): Come, share your favorites!
+Chair: Daniel D. Garcia UC Berkeley
+
+BoF
+bof39 Motivating CS1/2 Students with the Android Platform
+Chair: John Lewis Virginia Tech
+
+BoF
+bof27 Interdisciplinary Database Collaborations
+Chair: Suzanne Dietrich Arizona State University
+
+BoF
+bof02 Google Summer of Code and Google Code-in BoF
+Chair: Carol Smith Google, Inc.
+
+BoF
+bof10 Building Partnerships Across the CS Education Spectrum
+Chair: Chris Stephenson Computer Science Teachers Association
+
+BoF
+bof36 Engaging The Community With Mobile App Projects
+Chair: William Turkett Wake Forest University
+
+BoF
+bof21 Have Class, Will Travel
+Chair: Paige Meeker Presbyterian College
+
+BoF
+bof24 Integration of Experiential learning and teaching: -Beyond the walls of the classroom, techniques, challenges and merits.
+Chair: Arshia Khan The College of St. Scholastica
+
+
+
+
+
+POSTER
+post004 Using reflection to enhance feedback for automated grading
+Carl Alphonce, University at Buffalo;Joseph LeGasse, Meritain Health
+
+post014 The Cross-Curriculum Mobile Computing Labware for CS
+Liang Hong, Tennessee State University;Kai Qian and Dan Lo, Southern Polytechnic State University;Yi Pan, Yanqing Zhang and Xiaolin Hu, Georgia State University
+
+post021 Merging Healthcare and Technology:  A Multi-disciplinary Health Information Technology (HIT) Curriculum
+Elizabeth Howard, Donna Evans and Marilyn Anderson, Miami University - Middletwon;Jill Courte, Miami University - Hamilton
+
+post025 An Integrated Introduction to Network Protocols and Cryptography to High School Students
+William Mongan, Drexel University
+
+post029 A PC Robot for Learning Computer Vision and Advanced Programming
+Xuzhou Chen and Nadimpalli V.R. Mahadev, Fitchburg State University
+
+post033 Girls Gather for Computer Science (G2CS)
+Shereen Khoja, Juliet Brosing, Camille Wainwright and Jeffrey Barlow, Pacific University
+
+post035 Debuggems to Assess Student Learning in E-Textiles
+Deborah Fields, Kristin Searle, Yasmin Kafai and Hannah Min, University of Pennsylvania
+
+post037 Mediascripting – Teaching Introductory CS by Through Interactive Graphics Scripting
+Samuel Rebelsky, Janet Davis and Jerod Weinman, Grinnell College
+
+post040 Do Faculty Recognize the Difference Between Computer Science and Information Technology?  A Survey of Liberal Arts Faculty
+Jaime Spacco and Hannah Fidoten, Knox College
+
+post043 Interdisciplinary Travel Courses in Computer Science
+Paige Meeker, Presbyterian College
+
+post045 User type clustering to refine search and browse for educational resources
+Monika Akbar and Clifford A. Shaffer, Virginia Tech
+
+post049 A Comprehensive CS Curriculum Revision, Implementation and Analysis
+Steven Huss-Lederman, Beloit College
+
+post050 Developing an Interdisciplinary Health Informatics Security and Privacy Program
+Xiaohong Yuan, Jinsheng Xu, Hong Wang and Kossi Edoh, North Carolina A&T State University
+
+post056 A Team Software Development Course Featuring iPad Programming
+Robert England, Transylvania University
+
+post064 The Role of Belonging in Computer Science Student Engagement
+Nanette Veilleux, Simmons College;Rebecca Bates, Computer Science, Minnesota State University, Mankato;Cheryl Allendoerfer, Diane Jones and Joy Crawford, University of Washington
+
+post066 Streamlining Project Setup in Eclipse for Both Time-Constrained and Large-Scale Assignments
+Ellen Boyd and Anthony Allevato, Virginia Tech
+
+post067 A Customizable Platform for Classroom Collaboration Using Mobile Devices
+Stephen Hughes, Ben Schafer, Aaron Mangel and Sean Fredericksen, University of Northern Iowa
+
+post080 Explaining the Dynamic Structure and Behavior of Java Programs using a Visual Debugger
+Demian Lessa and Bharat Jayaraman, SUNY at Buffalo
+
+post081 Using FPGA Systems Across the Computer Science Curriculum
+D. Brian Larkins, H. Erin Rickard and William M. Jones, Coastal Carolina University
+
+post082 Maximizing Content Learning for Deaf Students and English as a Second Language Students
+Raja Kushalnagar and Joseph Stanislow, Rochester Institute of Technology
+
+post089 All-In-One Virtualized Laboratory
+Shamsi Moussavi and Giuseppe Sena, MassBay Community College
+
+post092 Recursive Thinkers and Doers in CS1
+Suzanne Menzel and Joseph Cottam, Indiana University
+
+post096 Computing in Context: Video Scenarios for Recognizing and Utilizing Basic Computing Constructs
+Madalene Spezialetti, Trinity College
+
+post101 Programming board-game strategies in the introductory CS sequence
+Ivona Bezakova, James Heliotis, Sean Strout, Adam Oest and Paul Solt, Rochester Institute of Technology
+
+
+POSTER
+post003 Implementing and Assessing a Blended CS1 Course
+John Wright, Juniata College
+
+post017 Designing with Projects in Mind: An Approach for Creating Authentic (and Manageable) Programming Projects
+Scott Turner, UNC Pembroke
+
+post022 Integrating Elementary Computational Modeling and Programming Principles
+Jose Garrido, Kennesaw State University
+
+post024 RoboLIFT: Simple GUI-Based Unit Testing of Student-Written Android Applications
+Anthony Allevato and Stephen Edwards, Virginia Tech
+
+post026 OpenDSA: A Creative Commons Active-eBook
+Eric Fouh, Maoyuan Sun and Clifford Shaffer, Virginia Tech
+
+post028 Active Learning in Computer Science Education Using Meta-Cognition
+Murali Mani and Quamrul Mazumder, University of Michigan, Flint
+
+post034 Dynamic Programming Across the CS Curriculum
+Yana Kortsarts, Widener University;Vasily Kolchenko, New York City College of Technology  The City University of New York
+
+post044 50 Ways to be a FOSSer:  Simple ways to involve students & faculty
+Clifton Kussmaul, Muhlenberg College;Heidi Ellis, Western New England University;Greg Hislop, Drexel University
+
+post052 Teaching Computer Science and programming concepts using LEGO NXT and TETRIX Robotics, and Computer Science Unplugged activities
+Daniela Marghitu, Taha Ben Brahim and John Weaver, Auburn University
+
+post053 Using POGIL to Teach Students To Be Better Problem Solvers
+Helen Hu, Westminster College
+
+post054 Developing a Gaming Concentration in the Computer Science Curriculum  at an HBCU
+Jinghua Zhang and Elva Jones, Winston-Salem State University
+
+post057 OSSIE: An Open Source Software Defined Radio (SDR) Toolset for Education and Research
+Jason Snyder, Virginia Tech
+
+post059 Implementing a Communication Intensive Core Course in the CS Curriculum:  A Survey of Methods
+Jean French, Coastal Carolina University
+
+post061 The Reflective Mentor: Charting Undergraduates' Responses to Computer Science Service Learning
+Quinn Burke, Yasmin Kafai, Jean Griffin, Rita Powell, Michele Grab, Susan Davidson and Joseph Sun, University of Pennsylvania
+
+post070 Teaching Cryptography Using Hands-on Labs
+Li Yang, University of Tennessee at Chattanooga;Joseph Kizza, Univeristy of Tennessee at Chattanooga;Andy Wang, Southern Polytechnic State University;Chung-Han Chen, Tuskegee University
+
+post074 From Drawing to Programming Attracting Middle-School Students to Programming through Self-Disclosing Code
+Jennelle Nystrom, Pelle Hall, Andrew Hirakawa and Samuel Rebelsky, Grinnell College
+
+post077 Proposed Revisions to the Social and Professional Knowledge Area for CS2013
+Carol Spradling, Northwest Missouri State University;Florence Appel, Saint Xavier University;Elizabeth Hawthorne, Union County College
+
+post084 A Better API for Java Reflection
+Zalia Shams, Virginia Tech
+
+post087 Hands-on Labs for a Mini-Course on Mobile Application Development
+Qusay H. Mahmoud, Nicholas Mair, Younis Mohamed and Sunny Dhillon, University of Guelph
+
+post090 CEOHP Evaluation, Evolution, and Archival
+Vicki Almstrum, Strayer University;Barbara Owens, Southwestern University;Mary Last, CEOHP;Deepa Muralidhar, North Gwinnett High School
+
+post094 CodeTrainer Teacher Authoring System: Facilitating User-Created Content in an Intelligent Tutoring System
+Christy McGuire, Thomas Harris and Jonathan Steinhart, Tutor Technologies, Inc;Leigh Ann Sudol-DeLyser, Carnegie Mellon University
+
+post097 Comparing Feature Sets within Visual and Command Line Environments and their effect on Novice Programming
+Edward Dillon, Jr., Monica Anderson-Herzog and Marcus Brown, University of Alabama
+
+post105 Exploring Connected Worlds
+Jeffrey Forbes, Duke University
+
+XXXXXX Teaching parallel computing with higher-level languages and compelling examples
+Jens Mache, Christopher T. Mitchell and Julian H. Dale, Lewis & Clark College;David P. Bunde, Casey Samoore, Sung Joo Lee and Johnathan Ebbers, Knox College
+
+
+Workshop 16
+work16i Intellectual Property Law Basics for Computer Science Instructors
+David G. Kay, UC Irvine
+
+Workshop 17
+work17t Teaching and Learning Computing via Social Gaming with Pex4Fun
+Nikolai Tillmann, Jonathan de Halleux and Judith Bishop, Microsoft Research; Tao Xie, North Carolina State University
+
+Workshop 18
+work18m Welcome to Makerland: A First Cultural Immersion into Open Source Communities
+Mel Chua, Purdue University; Sebastian Dziallas, Franklin W. Olin College of Engineering; Heidi Ellis, Western New England University; Greg Hislop, Drexel University; Karl Wurst, Worcester State University
+
+Workshop 19
+work19c Computational Art and Creative Coding: Teaching CS1 with Processing
+Dianna Xu and Deepak Kumar, Bryn Mawr College; Ira Greenberg, Southern Methodist University
+
+Workshop 20
+work20a AP CS Principles and The Beauty and Joy of Computing Curriculum
+Daniel Garcia, Brian Harvey, Nathaniel Titterton and Luke Segars, UC Berkeley; Tiffany Barnes, University of North Carolina, Charlotte;; Eugene Lemon, Ralph J Bunche High School; Sean Morris, Albany High School; Josh Paley, Henry M. Gunn High School
+
+Workshop 21
+work21p Peer Instruction in the CS Classroom: A Hands-On Introduction
+Daniel Zingaro, University of Toronto; Cynthia Bailey-Lee and Beth Simon, University of California, San Diego; John Glick, University of San Diego; Leo Porter, Skidmore College
+
+Workshop 22
+work22i Incorporating Software Architecture in the Computer Science Curriculum
+Martin Barrett, East Tennessee State University; Steve Chenoweth, Rose-Hulman Institute of Technology; Larry Jones, Software Engineering Institute; Amine Chigani, Virginia Tech; Ayse Bener, Ryerson University; Mei-Huei Tang, Gannon University
+
+Workshop 23
+work23p Parallelism and Concurrency for Data-Structures & Algorithms Courses
+Robert Chesebrough, Intel Corporation; Johnnie Baker, Kent State University
+
+Workshop 24
+work24a ARTSI Robotics Roadshow-in-a-Box: Turnkey Solution for Providing Robotics Workshops to Middle and High School Students
+Monica Anderson, The University of Alabama; Dave Touretzky, Carnegie Mellon; Chutima Boonthum-Denecke, Hampton University
+
+Workshop 25
+work25p Program by Design: From Animations to Data Structures
+Kathi Fisler, WPI; Stephen Bloch, Adelphi University
+
+Workshop 26
+work26c CS Outreach with App Inventor
+Michelle Friend, Stanford University; Jeff Gray, University of Alabama
+
+Workshop 27
+work27m Making Mathematical Reasoning Fun: Tool-Assisted, Collaborative Techniques
+Jason Hallstrom and Murali Sitaraman, School of Computing, Clemson University; Joe Hollingsworth, Computer Science, Indiana University Southeast; Joan Krone, Mathematics and Computer Science, Denison University
+
+Workshop 28
+work28s Snap! (Build Your Own Blocks)
+Brian Harvey, Daniel Garcia and Luke Segars, University of California, Berkeley; Josh Paley, Henry M. Gunn High School
+
+Workshop 29
+work29c Circuits and Microcontrollers in Computer Organization Laboratories
+Marge Coahran, Dickinson College; Janet Davis, Grinnell College
+
+Workshop 30
+work30w Web Development with Python and Django
+Ariel Ortiz, Tecnologico de Monterrey, Campus Estado de Mexico
+
+Workshop 31
+work31i Improving the Accessibility of Computing Enrichment Programs
+Richard Ladner, University of Washington; Karen Alkoby, Gallaudet University; Jeff Bigham, University of Rochester; Stephanie Ludi, Rochester Institute of Technology; Daniela Marghitu, Auburn University; Andreas Stefik, University of Southern Illinois, Edwardsville
+
+Workshop 32
+work32e Enhancing Student Interest by Extending Graphics Applications
+Samuel Rebelsky, Grinnell College
+
+Workshop 33
+work33e Engage Your Students by Teaching Programming Using Only Mobile Devices with TouchDevelop
+Nikolai Tillmann, Michal Moskal, Jonathan de Halleux and Manuel Fahndrich, Microsoft Research; Tao Xie, North Carolina State University
+
+Workshop 34
+work34c CS in Parallel: Modules for Adding Parallel Computing to CS Courses, from CS2 to Theory of Computation
+Richard Brown, St. Olaf College; Elizabeth Shoop, Macalester College
+
+Workshop 35
+work35l Listening to Linked Lists: Using Multimedia to Learn Data Structures
+Mark Guzdial and Barbara Ericson, Georgia Institute of Technology
+
+Workshop 36
+work36p Puzzle-Based Learning: Introducing Creative Thinking and Problem Solving for Computer Science and Engineering
+Raja Sooriamurthi, Carnegie Mellon University; Nick Falkner and Zbigniew Michalewicz, University of Adelaide
