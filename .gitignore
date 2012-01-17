@@ -7,3 +7,5 @@ syntax: glob
 *.mtc0
 *.synctex.gz
 .idea
+scheduletest.pdf
+program.pdf

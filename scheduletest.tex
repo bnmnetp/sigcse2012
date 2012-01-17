@@ -1,0 +1,144 @@
+%
+%  scheduletest
+%
+%  Created by Bradley Miller on 2011-11-24.
+%  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+%
+\documentclass[]{article}
+
+% TODO make paper size 5.5 by 8.5 (statement)
+
+% Use utf-8 encoding for foreign characters
+%\usepackage[utf8]{inputenc}
+%\usepackage{lmodern}
+% \usepackage{avant}
+
+
+ % \defaultfontfeatures{Scale=MatchLowercase}
+ % \setromanfont[Mapping=tex-text]{Garamond}
+ % \setsansfont[Mapping=tex-text]{Lucida Grande}
+ % \setmonofont{Monaco}
+
+%\DeclareUnicodeCharacter{8}{\textdegree}
+\usepackage{color}
+% Setup for fullpage use
+%\usepackage{fullpage}
+\usepackage[text={5in,8in},centering,showframe]{geometry}
+\usepackage{longtable}
+% Uncomment some of the following if you use the features
+%
+% Running Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\usepackage[none]{hyphenat}
+
+% Surround parts of graphics with box
+%\usepackage{boxedminipage}
+
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setmainfont[Mapping=tex-text]{Arial}
+\setromanfont[Mapping=tex-text]{Arial}
+\setsansfont[Mapping=tex-text]{Arial}
+\setmonofont{Monaco}
+
+% This is now the recommended way for checking for PDFLaTeX:
+\usepackage{ifpdf}
+
+%\newif\ifpdf
+%\ifx\pdfoutput\undefined
+%\pdffalse % we are not running PDFLaTeX
+%\else
+%\pdfoutput=1 % we are running PDFLaTeX
+%\pdftrue
+%\fi
+
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage{graphicx}
+\fi
+\title{A LaTeX Article}
+\author{  }
+
+\date{2011-11-24}
+
+\begin{document}
+%\font\body="Zapfino" at 10pt \body    
+    
+\cfoot{Wednesday \colorbox{red}{Thursday} Friday Saturday}
+%\raggedright
+\fontfamily{avant}
+
+\ifpdf
+\DeclareGraphicsExtensions{.pdf, .jpg, .tif}
+\else
+\DeclareGraphicsExtensions{.eps, .jpg}
+\fi
+
+\noindent
+\framebox[5in][l]{{\sffamily\Large \textbf{Thursday, 10:45-12:00}}}
+
+\begin{longtable}[l]{llr}
+    \parbox{1in}{\sffamily\fontsize{14pt}{18pt}\textbf{PANEL}} & \parbox{3in}{\sffamily\fontsize{14pt}{18pt}\textbf{Teaching Outside the Text}} & \parbox[r]{1in}{305B} \\
+    \parbox{1in}{Chair:} & \parbox{3in}{Lester Wainwright Charlottesville High School} & \\
+    \parbox{1in}{Participants:} & \multicolumn{2}{l}{\parbox{3.75in}{Renee Ciezki Estrella Mountain Community College;    Barbara Ericson Georgia Institute of Technology;  Glen Martin TAG Magnet High School}} \\ \\
+    \multicolumn{3}{l}{\parbox{5in}{We know that students bring diverse experiences and an assortment of learning styles into our classrooms. We greet them and hand out a syllabus listing the required book(s). One size does not fit all when it comes to textbooks. In this session, participants will discover teaching activities that can be used to supplement any text: hands-on, interesting and fun activities that help students understand CS topics. Members of the AP Computer Science-A Development Committee will share these resources and lead a discussion of proven strategies and lesson ideas for teaching outside the textbook.}}
+\end{longtable}
+
+\vspace{0.5em}
+\noindent\rule{5in}{0.02cm}
+\vspace{0.5em}
+
+%\begin{tabular}[l]{@{}p{1in}@{}p{3in}@{}>p{1in}@{}}
+\begin{longtable}[l]{@{}l@{}l@{}r}
+    \parbox[t]{1in}{\sffamily\Large\textbf{SPECIAL  SESSION}} & 
+    \parbox[t]{3in}{\raggedright\sffamily\Large\textbf{Scrum Across the CS/SE  Curricula}} & 
+    \parbox[t]{1in}{\sffamily\raggedleft\Large\textbf{306C}} \\ \\
+% row2 Chair    
+    Chair: & 
+    John Impagliazzo Hofstra University \\[0.5em]
+% row3  Participants    
+    \parbox[t]{1in}{Participants:} & 
+    \multicolumn{2}{@{}l}{\parbox{4in}{Susan Conry Clarkson University;
+    Eric Durant Milwaukee School of Engineering;
+    Andrew McGettrick University of Strathclyde;
+    Timothy Wilson Embry-Riddle Aeronautical University;
+    Mitch Thornton Southern Methodist University}} \\[2em]
+%row4
+    \multicolumn{3}{@{}p{5in}}{The ACM and the IEEE Computer Society created the CE2004 Review Task Force (RTF) and charged it with the task of reviewing and determining the extent to which the CE2004 document required revisions. The RTF recommended keeping the structure and the vast majority of the content of the original CE2004 document. It also recommended that contemporary topics should be strengthened or added while de-emphasizing other topics. Additionally, the RTF recommended that the two societies form a joint special-purpose committee to update and edit the earlier document and to seek input and review from the computer engineering industrial and academic communities. The presentation will provide insights in the RTF findings and thoughts on how a future computer engineering report might evolve.}
+\end{longtable}    
+
+\vspace{0.5em}
+\noindent\rule{5in}{0.02cm}
+\vspace{0.5em}
+
+\newpage
+\begin{longtable}{p{1in}p{3in}p{1in}}
+{\Large \textbf{PAPER}} & {\Large\textbf{Projects}} & \textbf{302A} \\
+Chair:  & Dummy TestData First Record of Database & \\ \\
+
+10:45 & \multicolumn{2}{p{3.75in}}{\raggedright\large\textbf{Social Sensitivity and Classroom Team Projects: An Empirical Investigation}} \\
+& \multicolumn{2}{p{3.75in}}{Lisa Bender North Dakota State University;
+Gursimran Walia North Dakota State University;
+Krishna Kambhampaty North Dakota State University;
+Kendall E. Nygard North Dakota State University;
+Travis E. Nygard Ripon College
+} \\ \\
+\multicolumn{3}{p{5in}}{Team work is the norm in major development projects and industry is continually striving to improve team effectiveness.  Researchers have established that teams with high levels of social sensitivity tend to perform well when completing a variety of specific collaborative tasks. Our claim is that, the social sensitivity can be a key component in predicting the performance of teams that carry out major projects. This paper reports the results from an empirical study that investigates whether social sensitivity is correlated with the performance of student teams on large semester-long projects. The overall result supports our claim. It suggests, therefore, that educators in computer-related disciplines should take the concept of social sensitivity seriously as an aid to productivity.} \\ \\
+
+11:15 & \multicolumn{2}{p{3.75in}}{\large\textbf{Taming Complexity in Large Scale Systems Projects}} \\ 
+& \multicolumn{2}{p{3.75in}}{Shimon Schocken IDC Herzliya} \\ \\
+\multicolumn{3}{p{5in}}{Engaging students in large software development projects is an important objective, since it exposes design and programming challenges that come to play only with scale. Alas, large scale projects can be monstrously complex – to the extent of being infeasible in academic settings. We describe a framework and a set of principles that enable students to develop large scale systems – e.g. a complete hardware platform or a compiler – in several semester weeks.} \\ \\
+
+11:45 & \multicolumn{2}{p{3.75in}}{\raggedright\large\textbf{An Approach for Evaluating FOSS Projects for Student Participation}} \\
+& \multicolumn{2}{p{3.75in}}{Heidi Ellis Western New England University
+Michelle Purcell Drexel University
+Gregory Hislop Drexel University} \\ \\
+\multicolumn{3}{p{5in}}{Free and Open Source Software (FOSS) offers a transparent development environment and community in which to involve students. Students can learn much about software development and professionalism by contributing to an on-going project. However, the number of FOSS projects is very large and there is a wide range of size, complexity, domains, and communities, making selection of an ideal project for students difficult. This paper addresses the need for guidance when selecting a FOSS project for student involvement by presenting an approach for FOSS project selection based on clearly identified criteria. The approach is based on several years of experience involving students in FOSS projects.}
+ 
+\end{longtable}
+
+\colorbox{black}{\color{white} Thursday}
+\end{document}

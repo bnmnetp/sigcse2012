@@ -1,0 +1,359 @@
+Plenary Session: Keynote Speaker: Frederick P. Brooks, Jr.
+Session Chair: Laurie Smith King, Dave Musicant
+XXXXX Keynote Speaker: Frederick P. Brooks, Jr.
+
+Session  1
+Panel: Computer Curricula 2013:  Update
+Session Chair: Mehran Sahami (Stanford University)
+panel12 Computer Curricula 2013:  Update
+
+Session  2
+Panel: Scrum Across the CS/SE Curricula
+Session Chair: Mark Hoffman (Quinnipiac University)
+panel02 Scrum Across the CS/SE Curricula
+
+Session  3
+SpecialSession: Role of Interdisciplinary Computing in Higher Education, Research and Industry
+Session Chair: Ursula Wolz (Franklin W. Olin College of Engineering)
+ss24w Role of Interdisciplinary Computing in Higher Education, Research and Industry
+
+Session  4
+Paper: Data Structures and Algorithms
+Session Chair: Ivona Bezakova (Rochester Institute of Technology)
+cse255 Sustainability Themed Problem Solving In Data Structures And Algorithms
+cse072 Metaphors and Analogies for Teaching Algorithms
+cse196 Detecting and Understanding Students’ Misconceptions Related to Algorithms and Data Structures
+
+Session  5
+Paper: Robots
+Session Chair: Sherri Goings (Carleton College)
+cse106 A C-based Introductory Course Using Robots
+cse043 dLife: A Java Library for Multiplatform Robotics, AI and Vision in Undergraduate CS and Research
+cse274 Seven Big Ideas in Robotics, and How To Teach Them
+
+Session  6
+Paper: K-6 Collaborations
+Session Chair: Sheila Castaneda (Clarke University)
+cse121 Design and Evaluation of a Braided Teaching Course in Sixth Grade Computer Science Education
+cse075 Parallel Programming in Elementary School
+cse258 Building Upon and Enriching Grade Four Mathematics Standards with Programming Curriculum
+
+Session  7
+Paper: Tools
+Session Chair: Sage Miller (Webster Central School District)
+cse229 Calico: A Multi-Programming-Language, Multi-Context Framework Designed for Computer Science Education
+cse147 How a Language-based GUI Generator Can Influence the Teaching of Object-Oriented Programming
+cse114 CodeWave: A Real-Time, Collaborative IDE for Enhanced Learning in Computer Science
+
+Session  8
+Panel: A Stratified View of Programming Language Parallelism for Undergraduate CS Education
+Session Chair: Richard Brown (St. Olaf College)
+panel18 A Stratified View of Programming Language Parallelism for Undergraduate CS Education
+
+Session  9
+SpecialSession: Demystifying Computing with Magic
+Session Chair: Daniel Garcia (UC Berkeley)
+ss28d Demystifying Computing with Magic
+
+Session  10
+Panel: Community-Based Projects for Computing Majors:  Opportunities, Challenges and Best Practices
+Session Chair: Jeffrey Stone (Pennsylvania State University)
+panel04 Community-Based Projects for Computing Majors:  Opportunities, Challenges and Best Practices
+
+Session  11
+Paper: Games
+Session Chair: Adrienne Decker (Rochester Institute of Technology)
+cse215 The Five Year Evolution of a Game Programming Course
+cse012 Programming, PWNed: Using Digital Game Development to Enhance Learners’ Competency and Self-Efficacy in a High School Computing Science Course
+cse282 A Learning Objective Focused Methodology for the Design and Evaluation of Game-based Tutors
+
+Session  12
+Paper: Professional Experiences
+Session Chair: Sarah Heckman (North Carolina State University)
+cse104 Course Guides: A Model for Bringing  Professionals into the Classroom
+cse053 Towards a Better Capstone Experience
+cse122 An Open Co-op Model for Global Enterprise Technology Education: Integrating the Internship and Course Work
+
+Session  13
+Paper: A Session with a View
+Session Chair: Don Goelman (Villanova University)
+cse033 Integrating Video Components in CS1
+cse085 Development and Evaluation of Indexed Captioned Searchable Videos for STEM Coursework
+cse035 Metaview: A Tool for Learning About Viewing in 3D
+
+Session  14
+Paper: Pedagogy:  Programming
+Session Chair: Saquib Razak (Carnegie Mellon University)
+cse236 Mediated Transfer: Alice 3 to Java
+cse073 Over-Confidence and Confusion in Using Bloom for Programming Fundamentals Assessment
+cse188 Modeling How Students Learn to Program
+
+Session  15
+Panel: Science Fiction in Computer Science Education
+Session Chair: Rebecca Bates (Minnesota State University, Mankato)
+panel17 Science Fiction in Computer Science Education
+
+Session  16
+Panel: Diversity Initiatives to Support Systemic Change for Women in Undergraduate Computing
+Session Chair: Leisa D. Thompson (University of Virginia)
+panel24 Initiatives to Support Systemic Change for Women in Undergraduate Computing
+
+Session  17
+SpecialSession: Transforming the CS Classroom with Studio-Based Learning
+Session Chair: Christopher Hundhausen (Washington State University)
+ss20c Transforming the CS Classroom with Studio-Based Learning
+
+Session  18
+Paper: Broadening Participation
+Session Chair: Kristine Nagel (Georgia Gwinnett College)
+cse130 Making Turing Machines Accessible to Blind Students
+cse207 Toward an Emergent Theory of Broadening Participation in Computer Science Education
+cse205 Exploring Formal Learning Groups and their Impact on Recruitment of Women in Undergraduate CS
+
+Session  19
+Paper: Online Collaboration
+Session Chair: Charles Leska (Randolph-Macon College)
+cse170 Perspectives on Active Learning and Collaboration: JavaWIDE in the Classroom
+cse237 How Well Do Online Forums Facilitate Discussion and Collaboration Among Novice Animation Programmers?
+cse234 Classroom Salon: A Tool for Social Collaboration
+
+Session  20
+Paper: Middle School Collaborations
+Session Chair: Catherine Lang (Swinburne University of Technology)
+cse070 Bringing The Breadth of Computer Science to Middle Schools
+cse151 Integrating Hard and Soft Skills: Software Engineers Serving Middle School Teachers
+cse169 The Fairy Performance Assessment: Measuring Computational Thinking in Middle School
+
+Session  21
+Paper: New Tricks for the Classroom
+Session Chair: Julian Mason (Duke University (PhD Student))
+cse267 Running Students’ Software Tests Against Each Others’ Code: New Life for an Old “Gimmick”
+cse179 Group Note-Taking in a Large Lecture Class: Design, Implementation, and Evaluation of a Low-Cost Universal Design Practice
+cse092 Following a Thread: Knitting Patterns and Program Tracing
+
+Plenary Session: Keynote Speaker: Hal Abelson
+Session Chair: Tracy Camp and Paul Tyman
+XXXXX Keynote Speaker: Hal Abelson
+
+Session  22
+Panel: Teaching Mathematical Reasoning Across the Curriculum
+Session Chair: Joan Krone (Denison University)
+panel15 Teaching Mathematical Reasoning Across the Curriculum
+
+Session  23
+SpecialSession: Teaching HS Computer Science as if the Rest of the World Existed
+Session Chair: Scott Portnoff (Downtown Magnets High School, Los Angeles)
+ss23s Teaching HS Computer Science as if the Rest of the World Existed
+
+Session  24
+SpecialSession: Funding the Challenges in Computing
+Session Chair: Guy-Alain Amoussou (NSF)
+ss19a Funding the Challenges in Computing
+
+Session  25
+Paper: CS1:  New Ideas
+Session Chair: Lori Carter (Point Loma Nazarene University)
+cse041 Creative Coding and Visual Portfolios for CS1
+cse087 Stepping Up to Integrative Questions on CS1 Exams
+cse013 Using Reflective Blogs for Pedagogical Feedback in CS1
+
+Session  26
+Paper: Team Work
+Session Chair: Jody Paul (Metropolitan State College of Denver)
+cse197 Participation patterns in student teams
+cse245 Application of Non-programming Focused Treisman-style Workshops in Introductory Computer Science
+cse227 Collaboration Across the Curriculum: A Disciplined Approach to Developing Team Skills
+
+Session  27
+Paper: Summer Experiences
+Session Chair: Kinnis Gosha (Morehouse College)
+cse098 App Inventor for Android: Report from a Summer Camp
+cse173 Sustainable and Effective Computing Summer Camps
+cse046 A Summer Science Experience with Computer Graphics for Secondary Students
+
+Session  28
+Paper: Software Engineering
+Session Chair: Ariel Ortiz (Tecnologico de Monterrey, Campus Estado de Mexico)
+cse235 Integrating UX with Scrum in an Undergraduate Software Development Project
+cse203 Using WReSTT in SE Courses: An Empirical Study
+cse180 Understanding the Tenets of Agile Software Engineering: Lecturing, Exploration and Critical Thinking
+
+Session  29
+SpecialSession: CS Principles:  Piloting a National Course
+Session Chair: Owen Astrachan (Duke University)
+ss29late CS Principles:  Piloting a National Course
+
+Session  30
+SpecialSession: Fun, Phone, and the Future - Microsoft XNA Game Studio, Windows Phone, and Kinect SDK
+Session Chair: Pat Yongpradit (Springbrook High School)
+ss08p Fun, Phone, and the Future - Microsoft XNA Game Studio, Windows Phone, and Kinect SDK
+
+Session  31
+SpecialSession: Building an Open, Large-Scale Research Repository of Initial Programming Student Behavior
+Session Chair: Michael Kölling (University of Kent)
+ss18k Building an Open, Large-Scale Research Repository of Initial Programming Student Behavior
+
+Session  32
+Paper: Collaborative Learning
+Session Chair: Adrian German (Indiana University School of Informatics and Computing)
+cse217 Assigning Student Programming Pairs Based on their Mental Model Consistency: An Initial Investigation
+cse208 Group Whiteboards and Modeler/Customer Teams: Getting Closer to Industrial-Style Collaboration in a Classroom
+cse066 Is There Service in Computing Service Learning?
+
+Session  33
+Paper: Curriculum Issues
+Session Chair: Colleen Lewis (University of California, Berkeley)
+cse176 Computer Science in NZ High Schools: The first year of the new standards
+cse018 Web Science: expanding the notion of Computer Science
+cse268 Educating the Educator Through Computation: What GIS Can Do For Computer Science
+
+Session  34
+Paper: Active Learning I
+Session Chair: Robert England (Transylvania University)
+cse110 An Experience Report: On The Use Of Multimedia Pre-Instruction And Just-In-Time Teaching In A CS1 Course
+cse263 Using JiTT in a Database Course
+cse133 Process Oriented Guided Inquiry Learning (POGIL) for Computer Science
+
+Session  35
+Paper: Communication Skills
+Session Chair: James Early (SUNY Oswego)
+cse030 Integrating Communication Skills into the Computer Science Curriculum
+cse127 'Explain in Plain English' Questions: Implications for Teaching
+cse123 The impact of question generation activities on performance
+
+Session  36
+SpecialSession: Understanding NSF Funding Opportunities
+Session Chair: Suzanne Westbrook (National Science Foundation)
+ss11s Understanding NSF Funding Opportunities
+
+Session  37
+Panel: Teaching Outside the Text
+Session Chair: Lester Wainwright (Charlottesville High School)
+panel07 Teaching Outside the Text
+
+Session  38
+SpecialSession: Computing Engineering Review Task Force Report
+Session Chair: John Impagliazzo (Hofstra University)
+ss05i Computing Engineering Review Task Force Report
+
+Session  39
+Paper: Projects
+Session Chair: Jeff Gray (University of Alabma)
+cse225 Social Sensitivity and Classroom Team Projects: An Empirical Investigation
+cse269 Taming Complexity in Large Scale Systems Projects
+cse190 An Approach for Evaluating FOSS Projects for Student Participation
+
+Session  40
+Paper: Alice and Scratch
+Session Chair: Kelly Powers (Advanced Math & Science Academy Charter School)
+cse214 Integrating Computing into Middle School Disciplines Through Projects
+cse233 Children Learning Computer Science Concepts via Alice Game-Programming
+cse083 The Writers’ Workshop for Youth Programmers: Digital Storytelling with Scratch in Middle School Classrooms
+
+Session  41
+Paper: Active Learning II
+Session Chair: Douglas Kranch (North Central State College)
+cse277 A Software Craftsman’s approach to Data Structures
+cse019 Jutge.org: An Educational Programming Judge
+cse134 Integrating Formal Verification in an Online Judge for e-Learning Logic Circuit Design
+
+Session  42
+Paper: Non-majors
+Session Chair: Derek Schuurman (Redeemer University College)
+cse079 Computing For STEM Majors:  Enhancing Non CS Majors’ Computing Skills
+cse047 Operations Research: Broadening Computer Science In A Liberal Arts College
+cse221 Beyond Competency: A Context-Driven CS0 Course
+
+Session  43
+SpecialSession: Nifty Assignments
+Session Chair: Nick Parlante (Stanford University)
+ss27late Nifty Assignments
+
+Session  44
+SpecialSession: Update on the CS Principles Project
+Session Chair: Amy Briggs (Middlebury College)
+ss25a Update on the CS Principles Project
+
+Session  45
+Panel: Implementing Evidence-Based Practices makes a Difference in Female Undergraduate Enrollments
+Session Chair: Wendy DuBow (University of Colorado)
+panel11 Implementing Evidence-Based Practices makes a Difference in Female Undergraduate Enrollments
+
+Session  46
+Paper: High School Collaborations
+Session Chair: Tim Bell (University of Canterbury)
+cse120 Life Two Years After a Game Programming Course: Longitudinal Viewpoints on K-12 Outreach
+cse062 Reflections on Outreach Programs in CS Classes: Learning Objectives for “Unplugged” Activities
+cse270 Weaving a Tapestry Satellite Workshop to Support HS CS Teachers in Attracting and Engaging Students
+cse198 Who AM I? Understanding High School Computer Science Teachers’ Professional Identity
+
+Session  47
+Paper: Parallelism and Concurrency
+Session Chair: Jodi Tims (Baldwin-Wallace College)
+cse058 Introducing Parallelism and Concurrency in the Data Structures Course
+cse007 Exploring Concurrency Using The Parallel Analysis Tool
+cse244 Virtual Clusters for Parallel and Distributed Education
+cse204 Cross Teaching Parallelism and Ray Tracing: A Project-based Approach to Teaching Applied Parallel Computing
+
+Session  48
+Paper: Mobile Computing
+Session Chair: Cyndi Rader (Colorado School of Mines)
+cse132 Cabana: A Cross-platform Mobile Development System
+cse220 Mobile Apps for the Greater Good: A Socially Relevant Approach to Software Engineering
+cse006 Using Mobile Phone Programming to Teach Java and Advanced Programming to Computer Scientists
+cse184 RoboLIFT: Engaging CS2 Students with Testable, Automatically Evaluated Android Applications
+
+Session  49
+Paper: Visualization
+Session Chair: Demian Lessa (State University of New York at Buffalo)
+cse064 Highway Data and Map Visualizations for Educational Use
+cse091 Experiments with Algorithm Visualization Tool Development
+cse228 CSTutor:  A Pen-Based Tool for Visualizing Data Structures
+cse156 ECVisual: A Visualization Tool for Elliptic Curve Based Ciphers
+
+Session  50
+Panel: Rediscovering the Passion, Beauty, Joy, and Awe:  Making Computing Fun Again
+Session Chair: Daniel Garcia (UC Berkeley)
+panel23 Rediscovering the Passion, Beauty, Joy, and Awe:  Making Computing Fun Again
+
+Session  51
+SpecialSession: Promoting Student-Centered Learning with POGIL
+Session Chair: Helen Hu (Westminster College)
+ss16h Promoting Student-Centered Learning with POGIL
+
+Session  52
+SpecialSession: Teaching Secure Coding - Report from Summit on Education in Secure Software
+Session Chair: Blair Taylor (Towson University)
+ss10b Teaching Secure Coding - Report from Summit on Education in Secure Software
+
+Session  53
+Paper: Attracting Majors
+Session Chair: Nanette Veilleux (Simmons College)
+cse202 Starting with ubicomp:   using the SenseBoard to introduce computing
+cse256 Improving First-Year Success and Retention through Interest-Based CS0 Courses
+cse222 Reshaping The Image Of Computer Science In Only Fifteen Minutes (Of Class) A Week
+
+Session  54
+Paper: OS and Distributed Computing
+Session Chair: William Mongan (Drexel University)
+cse105 Experiences Teaching MapReduce in the Cloud
+cse038 Developing Microlabs Using Google Web Toolkit
+cse252 Teaching Operating Systems Using Android
+
+Session  55
+Paper: Curricular Innovations and Research
+Session Chair: Michael Hewner (Duke University)
+cse028 Open Educational Resources in Computer Science Teaching
+cse031 Emergent Themes in a UI Design Hybrid-Studio Course
+cse262 A Multilevel, Multidimensional Undergraduate Course and Lab Experience on Embedded Multimedia Systems
+
+Session  56
+Paper: CS Education Research
+Session Chair: Yana Kortsarts (Widener University, Chester)
+cse175 Effective Closed Labs in Early CS Courses: Lessons from Seven Terms of Action Research
+cse080 What Do Students Learn About Programming  From Game, Music Video, And Storytelling Projects?
+cse271 Bayesian Network Analysis of Computer Science Grade Distributions
+
+Plenary Session: SIGCSE Luncheon Keynote speaker: Fernanda Viégas and Martin Wattenberg
+Session Chair: Laurie Smith King and Dave Musicant
+XXXXX SIGCSE Luncheon Keynote speaker: Fernanda Viégas and Martin Wattenberg
