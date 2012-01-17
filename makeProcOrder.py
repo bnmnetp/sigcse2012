@@ -173,12 +173,12 @@ class TimeSlot:
 
     def printSummary(self):
         global sessionNum
-        # print('-----------------')
-        # print('%s, %d:%02d to %d:%02d' % (self.day,self.startHour,self.startMinute,self.endHour,self.endMinute))
-        # print('-----------------')
+        print('-----------------')
+        print('%s, %d:%02d to %d:%02d' % (self.day,self.startHour,self.startMinute,self.endHour,self.endMinute))
+        print('-----------------')
 
         for session in self.sessionList:
-            if session.type in ['Poster','BOF','Workshop']:
+            if session.type in ['Panel','SpecialSession','Paper']:
                 print()
                 if session.type != 'Plenary Session':
                     sessionNum += 1
