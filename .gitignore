@@ -9,3 +9,18 @@ syntax: glob
 .idea
 scheduletest.pdf
 program.pdf
+generated_schedule.tex
+*.fdb_latexmk
+
+compByid.py
+jtest.py
+postgresql-9.0-801.jdbc3.jar
+postgresql-driver-license.txt
+Program/program.toc
+RMCC Function Space Layout.pdf
+SessionChairs.xlsx
+sheridanID2Title.csv
+sheridanID2Title.xlsx
+sigcse2012.sublime-project
+sigcse2012.sublime-workspace
+titlediffs.txt
