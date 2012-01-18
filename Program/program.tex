@@ -25,6 +25,7 @@
 %\usepackage{fullpage}
 %\usepackage[text={5in,8in},centering,showframe]{geometry}
 \usepackage[text={5in,8in},centering]{geometry}
+%\usepackage[table]{xcolor}
 \usepackage{longtable}
 % Uncomment some of the following if you use the features
 %
@@ -34,7 +35,7 @@
 % Surround parts of graphics with box
 \usepackage{boxedminipage}
 
-
+\usepackage[final]{pdfpages}
 % This is now the recommended way for checking for PDFLaTeX:
 \usepackage{ifpdf}
 
@@ -91,7 +92,12 @@
 \input{awards.tex}
 \input{evals.tex}
 \input{committee.tex}
-\input{sagtable.tex}
+%\input{sagtable.tex}     % NOTE -- the SAG is generated separately to avoid colortbl and longtable conflicts.
+\includepdf[pages={1}]{sag.pdf}
+\setcounter{page}{6}
+\addcontentsline{toc}{section}{Schedule at a Glance}
+\includepdf[pages={2,3}]{sag.pdf}
+\setcounter{page}{9}
 \input{notes.tex}
 \addcontentsline{toc}{section}{Schedule}
 %\input{generated_schedule.tex}
