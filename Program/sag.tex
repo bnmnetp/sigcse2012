@@ -23,8 +23,7 @@
 
 % Setup for fullpage use
 %\usepackage{fullpage}
-%\usepackage[text={5in,8in},centering,showframe]{geometry}
-\usepackage[text={5in,8in},centering]{geometry}
+\usepackage[text={5in,8in},headsep={0.0625in},footskip={.125in},centering]{geometry}
 \usepackage{longtable}
 % Uncomment some of the following if you use the features
 %
@@ -61,6 +60,7 @@
 
 
 \begin{document}
+\renewcommand{\headrulewidth}{0pt}
 \setcounter{page}{6}
 \input{sagtable_alone.tex}
 % \subsubsection*{Wednesday, 7:00 to 10:00}
