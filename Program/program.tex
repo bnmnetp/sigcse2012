@@ -24,7 +24,7 @@
 % Setup for fullpage use
 %\usepackage{fullpage}
 %\usepackage[text={5in,8in},centering,showframe]{geometry}
-\usepackage[text={5in,8in},centering]{geometry}
+\usepackage[text={5in,8in},headsep={0.0625in},footskip={.125in},centering]{geometry}
 %\usepackage[table]{xcolor}
 \usepackage{longtable}
 % Uncomment some of the following if you use the features
@@ -87,6 +87,7 @@
 \tableofcontents
 
 \fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
 \input{fm01spc-sc-message.tex}
 \input{stats.tex}
 \input{awards.tex}
