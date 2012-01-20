@@ -387,7 +387,7 @@ class SpecialSession(Session):
         Needs: type, title, room, chair, participants and abstract
         """
         c = {}
-        c['type'] = 'PANEL'
+        c['type'] = 'SS'
         c['title'] = latex_escape(self.title)
         c['room'] = self.room
         c['chair'] = latex_escape("%s %s, \\textit{%s}" % (self.chairFirst,self.chairLast,self.chairInst))
